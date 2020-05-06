@@ -12,5 +12,5 @@ docker run --name testproject-agent \
 # Docker Compose 
 
 ```
-docker-compose -f ../testproject/testproject-agent.yaml
+docker-compose -f ../testproject/testprojectagent.yaml
 ```
