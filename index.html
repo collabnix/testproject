@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+            function myFunction() {
+                var x, text;
+                x = document.getElementById("numb").value;
+                if (isNaN(x) || x < 1 || x > 10) {
+                  text = "You Got It Wrong";
+                } else {
+                  text = "Yay";
+                }
+                document.getElementById("demo").innerHTML = text;
+            }
+        </script>
+        <style>
+            .outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  /*whatever width you want*/
+}
+        </style>
+	</head>
+<body>
+    <div class="outer">
+        <div class="middle">
+          <div class="inner" style="text-align: center; border: 3px solid burlywood;">
+            <h2>Let's Play A Game</h2>
+            ​<h3>See if you can guess the number </h3>
+            <input id="numb">
+            <button type="button" onclick="myFunction()">Submit</button>
+            <a style=" border: 3px solid burlywood;"onclick="myFunction()">submit</a>
+            <p id="demo"></p>
+          </div>
+        </div>
+    </div>
+</body>
+</html> 
+​
