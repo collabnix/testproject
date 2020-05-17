@@ -41,6 +41,21 @@ brew services start jenkins-lts
 brew services restart jenkins-lts
 ```
 
+## Forgot Jenkins Password
+
+```
+vi /Users/ajeetraina/.jenkins/config.xml
+```
+
+Change the line as:
+
+```
+<useSecurity>true</useSecurity>
+to
+
+<useSecurity>false</useSecurity>
+```
+
 # Update the Jenkins version: 
 
 ```
