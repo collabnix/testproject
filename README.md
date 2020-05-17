@@ -23,6 +23,12 @@ docker-compose -f ../testproject/testprojectagent.yaml
 brew install jenkins-lts
 ```
 
+```
+brew uninstall jenkins --force
+brew cleanup
+```
+
+
 ## Start the Jenkins service: 
 
 ```
