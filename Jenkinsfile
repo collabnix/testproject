@@ -18,7 +18,7 @@ pipeline {
       }
       stage('Test') {
 	 steps {
-	    runtpjob jobId: '4izA0I6pF0-LHz_MJi1gSQ', projectId: '10r7tS-ZDUO1q_hFNuyDng', waitJobFinishSeconds: 1800
+	    tprunjob jobId: '4izA0I6pF0-LHz_MJi1gSQ', projectId: '10r7tS-ZDUO1q_hFNuyDng', waitJobFinishSeconds: 1800
 	    
 	    sh "killall -9 node"
 
