@@ -14,8 +14,7 @@ pipeline {
 	 steps {
 
 	    sh "node index.js &"
-
-	 }
+	       }
       }
       stage('Test') {
 	 steps {
