@@ -13,14 +13,14 @@ pipeline {
       stage('Run') {
 	 steps {
 
-	    sh "node index.js &"
+	    sh 'node index.js &'
 	       }
       }
       stage('Test') {
 	 steps {
 	    runtpJob jobId: 'VDwj_PAk20SkRaNTOxf9Og', projectId: '6m1LeGuoB0qPgwS05Ew4yA', waitJobFinishSeconds: 1800
 	    
-	    sh "killall -9 node"
+	    sh 'killall -9 node'
 
 	 }
       }
