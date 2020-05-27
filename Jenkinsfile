@@ -19,7 +19,7 @@ pipeline {
       }
       stage('Test') {
 	 steps {
-	    tpJobRun agentId: '0OvZAzBaC0u4YUkqezrACg', executionParameters: '', jobId: 'VDwj_PAk20SkRaNTOxf9Og', junitResultsFile: '', projectId: '6m1LeGuoB0qPgwS05Ew4yA', waitJobFinishSeconds: 1800
+	    runtpjob jobId: 'VDwj_PAk20SkRaNTOxf9Og', projectId: '6m1LeGuoB0qPgwS05Ew4yA', waitJobFinishSeconds: 1800
 		 
 	    sh 'killall -9 node'
 
