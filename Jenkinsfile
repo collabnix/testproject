@@ -14,7 +14,7 @@ pipeline {
 	 steps {
 
 	  cd testproject  
-	  sh 'node index.js &'
+	  sh startnode.sh
 	       }
       }
       stage('Test') {
