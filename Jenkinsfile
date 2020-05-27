@@ -5,7 +5,7 @@ pipeline {
       stage('Build') {
          steps {
             // Get some code from a GitHub repository
-            git 'https://github.com/collabnix/testproject.git'
+            git clone 'https://github.com/collabnix/testproject.git'
            
          }
 
@@ -13,7 +13,8 @@ pipeline {
       stage('Run') {
 	 steps {
 
-	    sh 'node index.js &'
+	  cd testproject  
+	  sh 'node index.js &'
 	       }
       }
       stage('Test') {
