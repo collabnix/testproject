@@ -5,7 +5,7 @@ pipeline {
       stage('Build') {
          steps {
             // Get some code from a GitHub repository
-            git clone 'https://github.com/collabnix/testproject.git'
+            git  'https://github.com/collabnix/testproject.git'
            
          }
 
