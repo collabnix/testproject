@@ -79,3 +79,15 @@ brew upgrade jenkins-lts
 
 - After installing the TestProject Jenkins plugin, generating an API key and configuring it to be used by Jenkins, you are ready to go ahead and incorporate your automated tests in the CI process. The plugin supports the two most popular approaches: Freestyle & Pipeline.
 
+
+# Troubleshooting
+
+1. If you are using https://api.testproject.io/docs/v2/#/Agents/Agents_GenerateAgentConfigAsync and unable to get CONFIG paramter, ensure that you provide correct agent name 
+
+```
+{
+  "alias": "collabnix"
+}
+ ```
+ 
+ 2. 
