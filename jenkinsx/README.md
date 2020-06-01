@@ -9,24 +9,6 @@
 brew install jx
 ```
 
-## Syntax
-
-```
-Examples:
-  # create a cluster on Google Cloud
-  jx create cluster gke --skip-installation
-
-  # create a cluster on AWS via EKS
-  jx create cluster eks --skip-installation
-Available Commands:
-  create cluster aks Create a new Kubernetes cluster on AKS: Runs on Azure
-  create cluster eks Create a new Kubernetes cluster on AWS using EKS
-  create cluster gke Create a new Kubernetes cluster on GKE: Runs on Google Cloud
-  create cluster iks Create a new kubernetes cluster on IBM Cloud Kubernetes Services
-
-Usage:
-  jx create cluster [kubernetes provider] [flags] [options]
-```
 
 ## Installing Jenkins X on EKS
 
@@ -217,6 +199,27 @@ Waiting 1s for the pods to become ready...
 
 Try #2
 
+## Install eksctl
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+
+## Install the Weaveworks Homebrew tap.
+
+```
+brew tap weaveworks/tap
+```
+
+## Install or upgrade eksctl.
+
+Install eksctl with the following command:
+
+```
+brew install weaveworks/tap/eksctl
+```
+
 ```
 jx create cluster eks
 Creating EKS cluster - this can take a while so please be patient...
@@ -246,4 +249,28 @@ You can watch progress in the CloudFormation console: https://console.aws.amazon
 [ℹ]  --nodes-max=2 was set automatically for nodegroup ng-e4779a13
 [ℹ]  deploying stack "eksctl-unique-painting-1591039510-nodegroup-ng-e4779a13"
 [✔]  tagged EKS cluster (CreatedBy=JenkinsX)
+
+[ℹ]  waiting for the control plane availability...
+[✔]  saved kubeconfig as "/Users/ajeetraina/.kube/config"
+[ℹ]  no tasks
+[✔]  all EKS cluster resources for "unique-painting-1591039510" have been created
+[ℹ]  adding identity "arn:aws:iam::125346028423:role/eksctl-unique-painting-1591039510-NodeInstanceRole-14JXXGK48NXHR" to auth ConfigMap
+[ℹ]  nodegroup "ng-e4779a13" has 0 node(s)
+[ℹ]  waiting for at least 2 node(s) to become ready in "ng-e4779a13"
+[ℹ]  nodegroup "ng-e4779a13" has 2 node(s)
+[ℹ]  node "ip-192-168-48-189.us-east-2.compute.internal" is ready
+[ℹ]  node "ip-192-168-85-144.us-east-2.compute.internal" is ready
+[ℹ]  kubectl command should work with "/Users/ajeetraina/.kube/config", try 'kubectl get nodes'
+[✔]  EKS cluster "unique-painting-1591039510" in "us-east-2" region is ready
+
+Initialising cluster ...
+? Configured Jenkins installation type: Serverless Jenkins X Pipelines with Tekton
+amespace jx created
+Context "iam-root-account@unique-painting-1591039510.us-east-2.eksctl.io" modified.
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+Helm installed and configured
+? No existing ingress controller found in the kube-system namespace, installing one: Yes
+Using local value overrides file /Users/ajeetraina/myvalues.yaml
+Using helm values file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/ing-values-807537748
+
 ```
