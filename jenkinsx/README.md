@@ -79,4 +79,9 @@ You can watch progress in the CloudFormation console: https://console.aws.amazon
 [ℹ]  2 sequential tasks: { create cluster control plane "beautiful-creature-1591004252", create nodegroup "ng-623234c1" }
 [ℹ]  building cluster stack "eksctl-beautiful-creature-1591004252-cluster"
 [ℹ]  deploying stack "eksctl-beautiful-creature-1591004252-cluster"
+
+[✔]  EKS cluster "beautiful-creature-1591004252" in "us-east-2" region is ready
+
+Initialising cluster ...
+eks cluster created. Skipping Jenkins X installation.
 ```
