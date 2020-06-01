@@ -191,3 +191,25 @@ waiting up to 0s for the Jenkins server to be healthy at URL http://jenkins.jx.3
 
 
 ```
+
+```
+[Captains-Bay]🚩 >   jx step verify install
+verifying the Jenkins X installation in namespace jx
+verifying pods
+Checking pod statuses
+POD                                       STATUS
+jenkins-5fc77fbb76-574n8                  Pending
+jenkins-x-chartmuseum-d87cbb789-jbpzm     Running
+jenkins-x-controllerrole-5c479b77dd-mjbqg Running
+jenkins-x-gcactivities-1591034400-k5v7z   Succeeded
+jenkins-x-gcactivities-1591036200-4vtf6   Succeeded
+jenkins-x-gcpods-1591034400-5wx7f         Succeeded
+jenkins-x-gcpods-1591036200-rmwjr         Succeeded
+jenkins-x-gcpreviews-1591034400-hzblj     Succeeded
+jenkins-x-heapster-bcf47b4b7-ml87h        Running
+jenkins-x-nexus-b69b7745b-7dn96           Running
+WARNING: the following pods are not ready:
+Pending: jenkins-5fc77fbb76-574n8
+
+Waiting 1s for the pods to become ready...
+```
