@@ -213,3 +213,37 @@ Pending: jenkins-5fc77fbb76-574n8
 
 Waiting 1s for the pods to become ready...
 ```
+
+
+Try #2
+
+```
+jx create cluster eks
+Creating EKS cluster - this can take a while so please be patient...
+You can watch progress in the CloudFormation console: https://console.aws.amazon.com/cloudformation/
+[ℹ]  eksctl version 0.20.0
+[ℹ]  using region us-east-2
+[ℹ]  setting availability zones to [us-east-2c us-east-2b us-east-2a]
+[ℹ]  subnets for us-east-2c - public:192.168.0.0/19 private:192.168.96.0/19
+[ℹ]  subnets for us-east-2b - public:192.168.32.0/19 private:192.168.128.0/19
+[ℹ]  subnets for us-east-2a - public:192.168.64.0/19 private:192.168.160.0/19
+[ℹ]  nodegroup "ng-e4779a13" will use "ami-0edc51bc2f03c9dc2" [AmazonLinux2/1.16]
+[ℹ]  using Kubernetes version 1.16
+[ℹ]  creating EKS cluster "unique-painting-1591039510" in "us-east-2" region with un-managed nodes
+[ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial nodegroup
+[ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-east-2 --cluster=unique-painting-1591039510'
+[ℹ]  CloudWatch logging will not be enabled for cluster "unique-painting-1591039510" in "us-east-2"
+[ℹ]  you can enable it with 'eksctl utils update-cluster-logging --region=us-east-2 --cluster=unique-painting-1591039510'
+[ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "unique-painting-1591039510" in "us-east-2"
+[ℹ]  2 sequential tasks: { create cluster control plane "unique-painting-1591039510", 2 parallel sub-tasks: { tag cluster, create nodegroup "ng-e4779a13" } }
+[ℹ]  building cluster stack "eksctl-unique-painting-1591039510-cluster"
+[ℹ]  deploying stack "eksctl-unique-painting-1591039510-cluster"
+
+
+
+[ℹ]  building nodegroup stack "eksctl-unique-painting-1591039510-nodegroup-ng-e4779a13"
+[ℹ]  --nodes-min=2 was set automatically for nodegroup ng-e4779a13
+[ℹ]  --nodes-max=2 was set automatically for nodegroup ng-e4779a13
+[ℹ]  deploying stack "eksctl-unique-painting-1591039510-nodegroup-ng-e4779a13"
+[✔]  tagged EKS cluster (CreatedBy=JenkinsX)
+```
