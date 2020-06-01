@@ -1,0 +1,222 @@
+jx create cluster eks
+Creating EKS cluster - this can take a while so please be patient...
+You can watch progress in the CloudFormation console: https://console.aws.amazon.com/cloudformation/
+[ℹ]  eksctl version 0.20.0
+[ℹ]  using region us-east-2
+[ℹ]  setting availability zones to [us-east-2c us-east-2b us-east-2a]
+[ℹ]  subnets for us-east-2c - public:192.168.0.0/19 private:192.168.96.0/19
+[ℹ]  subnets for us-east-2b - public:192.168.32.0/19 private:192.168.128.0/19
+[ℹ]  subnets for us-east-2a - public:192.168.64.0/19 private:192.168.160.0/19
+[ℹ]  nodegroup "ng-e4779a13" will use "ami-0edc51bc2f03c9dc2" [AmazonLinux2/1.16]
+[ℹ]  using Kubernetes version 1.16
+[ℹ]  creating EKS cluster "unique-painting-1591039510" in "us-east-2" region with un-managed nodes
+[ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial nodegroup
+[ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-east-2 --cluster=unique-painting-1591039510'
+[ℹ]  CloudWatch logging will not be enabled for cluster "unique-painting-1591039510" in "us-east-2"
+[ℹ]  you can enable it with 'eksctl utils update-cluster-logging --region=us-east-2 --cluster=unique-painting-1591039510'
+[ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "unique-painting-1591039510" in "us-east-2"
+[ℹ]  2 sequential tasks: { create cluster control plane "unique-painting-1591039510", 2 parallel sub-tasks: { tag cluster, create nodegroup "ng-e4779a13" } }
+[ℹ]  building cluster stack "eksctl-unique-painting-1591039510-cluster"
+[ℹ]  deploying stack "eksctl-unique-painting-1591039510-cluster"
+
+
+
+[ℹ]  building nodegroup stack "eksctl-unique-painting-1591039510-nodegroup-ng-e4779a13"
+[ℹ]  --nodes-min=2 was set automatically for nodegroup ng-e4779a13
+[ℹ]  --nodes-max=2 was set automatically for nodegroup ng-e4779a13
+[ℹ]  deploying stack "eksctl-unique-painting-1591039510-nodegroup-ng-e4779a13"
+[✔]  tagged EKS cluster (CreatedBy=JenkinsX)
+
+[ℹ]  waiting for the control plane availability...
+[✔]  saved kubeconfig as "/Users/ajeetraina/.kube/config"
+[ℹ]  no tasks
+[✔]  all EKS cluster resources for "unique-painting-1591039510" have been created
+[ℹ]  adding identity "arn:aws:iam::125346028423:role/eksctl-unique-painting-1591039510-NodeInstanceRole-14JXXGK48NXHR" to auth ConfigMap
+[ℹ]  nodegroup "ng-e4779a13" has 0 node(s)
+[ℹ]  waiting for at least 2 node(s) to become ready in "ng-e4779a13"
+[ℹ]  nodegroup "ng-e4779a13" has 2 node(s)
+[ℹ]  node "ip-192-168-48-189.us-east-2.compute.internal" is ready
+[ℹ]  node "ip-192-168-85-144.us-east-2.compute.internal" is ready
+[ℹ]  kubectl command should work with "/Users/ajeetraina/.kube/config", try 'kubectl get nodes'
+[✔]  EKS cluster "unique-painting-1591039510" in "us-east-2" region is ready
+
+Initialising cluster ...
+? Configured Jenkins installation type: Serverless Jenkins X Pipelines with Tekton
+Namespace jx created
+Context "iam-root-account@unique-painting-1591039510.us-east-2.eksctl.io" modified.
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+Helm installed and configured
+? No existing ingress controller found in the kube-system namespace, installing one: Yes
+Using local value overrides file /Users/ajeetraina/myvalues.yaml
+Using helm values file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/ing-values-807537748
+
+Waiting for external loadbalancer to be created and update the nginx-ingress-controller service in kube-system namespace
+External loadbalancer created
+Waiting to find the external host name of the ingress controller Service in namespace kube-system with name jxing-nginx-ingress-controller
+
+On AWS we recommend using a custom DNS name to access services in your Kubernetes cluster to ensure you can use all of your Availability Zones
+If you do not have a custom DNS name you can use yet, then you can register a new one here: https://console.aws.amazon.com/route53/home?#DomainRegistration:
+? Would you like to register a wildcard DNS ALIAS to point at this ELB address?  Yes
+
+? Your custom DNS name:  3.23.248.57.nip.io
+About to insert/update DNS CNAME record into HostedZone /hostedzone/Z03960503SQL4HGKYUPTO with wildcard *.3.23.248.57.nip.io pointing to a841324debd73403dac8e8c0c30b4911-0ff50e830e470d1c.elb.us-east-2.amazonaws.com
+Updated HostZone ID /hostedzone/Z03960503SQL4HGKYUPTO successfully
+nginx ingress controller installed and configured
+Set up a Git username and API token to be able to perform CI/CD
+Creating a local Git user for github.com server
+? github.com username: collabnix
+To be able to create a repository on github.com we need an API Token
+Please click this URL and generate a token
+https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo
+
+Then COPY the token and enter it below:
+
+? API Token: ****************************************
+Select the CI/CD pipelines Git server and user
+? Do you wish to use github.com as the pipelines Git server: Yes
+Creating a pipelines Git user for github.com server
+To be able to create a repository on github.com we need an API Token
+Please click this URL and generate a token
+https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo
+
+Then COPY the token and enter it below:
+
+? API Token: ****************************************
+Setting the pipelines Git server https://github.com and user name collabnix.
+? A local Jenkins X cloud environments repository already exists, recreating with latest: Yes
+Enumerating objects: 1440, done.
+Total 1440 (delta 0), reused 0 (delta 0), pack-reused 1440
+Using local value overrides file /Users/ajeetraina/myvalues.yaml
+? Defaulting workload build pack: Kubernetes Workloads: Automated CI+CD with GitOps Promotion
+Setting the team build pack to kubernetes-workloads repo: https://github.com/jenkins-x-buildpacks/jenkins-x-kubernetes.git ref: master
+Installing jx into namespace jx
+Installing jenkins-x-platform version: 2.0.2259
+error: installing the Jenkins X platform: failed to install/upgrade the jenkins-x platform chart: failed to run 'kubectl apply --recursive -f /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/helm-template-workdir-520102349/jenkins-x/output/namespaces/jx -l jenkins.io/chart-release=jenkins-x --namespace jx --validate=false' command in directory '', output: 'deployment.apps/jenkins-x-chartmuseum created
+persistentvolumeclaim/jenkins-x-chartmuseum created
+secret/jenkins-x-chartmuseum created
+service/jenkins-x-chartmuseum created
+role.rbac.authorization.k8s.io/cleanup created
+rolebinding.rbac.authorization.k8s.io/cleanup created
+serviceaccount/cleanup created
+clusterrole.rbac.authorization.k8s.io/controllerrole-jx created
+clusterrolebinding.rbac.authorization.k8s.io/controllerrole-jx created
+deployment.apps/jenkins-x-controllerrole created
+release.jenkins.io/controllerrole-2.1.55 created
+role.rbac.authorization.k8s.io/controllerrole created
+rolebinding.rbac.authorization.k8s.io/controllerrole created
+serviceaccount/jenkins-x-controllerrole created
+configmap/exposecontroller created
+role.rbac.authorization.k8s.io/expose created
+rolebinding.rbac.authorization.k8s.io/expose created
+serviceaccount/expose created
+clusterrole.rbac.authorization.k8s.io/gcactivities-jx created
+clusterrolebinding.rbac.authorization.k8s.io/gcactivities-jx created
+cronjob.batch/jenkins-x-gcactivities created
+release.jenkins.io/gcactivities-2.1.55 created
+role.rbac.authorization.k8s.io/gcactivities created
+rolebinding.rbac.authorization.k8s.io/gcactivities created
+serviceaccount/jenkins-x-gcactivities created
+cronjob.batch/jenkins-x-gcpods created
+release.jenkins.io/gcpods-2.1.55 created
+role.rbac.authorization.k8s.io/gcpods created
+rolebinding.rbac.authorization.k8s.io/gcpods created
+serviceaccount/jenkins-x-gcpods created
+clusterrole.rbac.authorization.k8s.io/gcpreviews-jx created
+clusterrolebinding.rbac.authorization.k8s.io/gcpreviews-jx created
+cronjob.batch/jenkins-x-gcpreviews created
+release.jenkins.io/gcpreviews-2.1.55 created
+role.rbac.authorization.k8s.io/gcpreviews created
+rolebinding.rbac.authorization.k8s.io/gcpreviews created
+serviceaccount/jenkins-x-gcpreviews created
+deployment.apps/jenkins-x-heapster created
+clusterrolebinding.rbac.authorization.k8s.io/jenkins-x-heapster created
+role.rbac.authorization.k8s.io/jenkins-x-heapster-pod-nanny created
+rolebinding.rbac.authorization.k8s.io/jenkins-x-heapster-pod-nanny created
+service/heapster created
+serviceaccount/jenkins-x-heapster created
+configmap/jenkins created
+persistentvolumeclaim/jenkins created
+service/jenkins-agent created
+service/jenkins created
+configmap/jenkins-x-git-kinds created
+configmap/jenkins-pod-xml-dlang created
+clusterrolebinding.rbac.authorization.k8s.io/jenkins-jx-role-binding created
+secret/jenkins created
+serviceaccount/jenkins created
+configmap/jenkins-tests created
+configmap/jenkins-pod-xml-dotnet created
+configmap/jenkins-pod-xml-maven-nodejs created
+configmap/jenkins-pod-xml-python37 created
+configmap/jenkins-pod-xml-maven created
+configmap/jenkins-pod-xml-promote created
+configmap/jenkins-pod-xml-php5x created
+configmap/jenkins-pod-xml-jx-base created
+configmap/jenkins-pod-xml-nodejs12x created
+configmap/jenkins-pod-xml-swift created
+configmap/jenkins-pod-xml-newman created
+configmap/jenkins-pod-xml-ruby created
+configmap/jenkins-pod-xml-maven-graalvm created
+configmap/jenkins-pod-xml-python created
+configmap/jenkins-pod-xml-php7x created
+configmap/jenkins-pod-xml-go created
+configmap/jenkins-pod-xml-machine-learning created
+configmap/jenkins-pod-xml-nodejs8x created
+configmap/jenkins-pod-xml-terraform created
+configmap/jenkins-pod-xml-nodejs created
+configmap/jenkins-pod-xml-rust created
+configmap/jenkins-pod-xml-maven-java11 created
+configmap/jenkins-pod-xml-python2 created
+configmap/jenkins-pod-xml-machine-learning-gpu created
+configmap/jenkins-pod-xml-packer created
+configmap/jenkins-pod-xml-aws-cdk created
+configmap/jenkins-pod-xml-gradle created
+configmap/jenkins-pod-xml-nodejs10x created
+configmap/jenkins-pod-xml-scala created
+configmap/nexus created
+deployment.apps/jenkins-x-nexus created
+persistentvolumeclaim/jenkins-x-nexus created
+secret/nexus created
+service/nexus created
+role.rbac.authorization.k8s.io/committer created
+secret/jenkins-docker-cfg created
+configmap/jenkins-x-devpod-config created
+configmap/jenkins-x-docker-registry created
+configmap/jenkins-x-extensions created
+configmap/jenkins-x-pod-template-dlang created
+secret/jx-basic-auth created
+role.rbac.authorization.k8s.io/jx-view created
+secret/jenkins-maven-settings created
+secret/jenkins-npm-token created
+role.rbac.authorization.k8s.io/owner created
+secret/jenkins-release-gpg created
+secret/jenkins-ssh-config created
+role.rbac.authorization.k8s.io/viewer created
+configmap/jenkins-x-pod-template-dotnet created
+configmap/jenkins-x-pod-template-maven-nodejs created
+configmap/jenkins-x-pod-template-python37 created
+configmap/jenkins-x-pod-template-maven created
+configmap/jenkins-x-pod-template-promote created
+configmap/jenkins-x-pod-template-php5x created
+configmap/jenkins-x-pod-template-jx-base created
+configmap/jenkins-x-pod-template-nodejs12x created
+configmap/jenkins-x-pod-template-swift created
+configmap/jenkins-x-pod-template-newman created
+configmap/jenkins-x-pod-template-ruby created
+configmap/jenkins-x-pod-template-maven-graalvm created
+configmap/jenkins-x-pod-template-python created
+configmap/jenkins-x-pod-template-php7x created
+configmap/jenkins-x-pod-template-go created
+configmap/jenkins-x-pod-template-machine-learning created
+configmap/jenkins-x-pod-template-nodejs8x created
+configmap/jenkins-x-pod-template-terraform created
+configmap/jenkins-x-pod-template-nodejs created
+configmap/jenkins-x-pod-template-rust created
+configmap/jenkins-x-pod-template-maven-java11 created
+configmap/jenkins-x-pod-template-python2 created
+configmap/jenkins-x-pod-template-machine-learning-gpu created
+configmap/jenkins-x-pod-template-packer created
+configmap/jenkins-x-pod-template-aws-cdk created
+configmap/jenkins-x-pod-template-gradle created
+configmap/jenkins-x-pod-template-nodejs10x created
+configmap/jenkins-x-pod-template-scala created
+error: unable to recognize "/var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/helm-template-workdir-520102349/jenkins-x/output/namespaces/jx/jenkins-x-platform/charts/jenkins/templates/part0-jenkins-master-deployment.yaml": no matches for kind "Deployment" in version "extensions/v1beta1"'
