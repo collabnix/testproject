@@ -10,8 +10,9 @@ brew tap jenkins-x/jx
 brew install jx
 ```
 
-# 
+# Syntax
 
+```
 Examples:
   # create a cluster on Google Cloud
   jx create cluster gke --skip-installation
@@ -26,7 +27,7 @@ Available Commands:
 
 Usage:
   jx create cluster [kubernetes provider] [flags] [options]
-  
+```  
   
   
   
@@ -36,9 +37,12 @@ Usage:
 jx create cluster eks --skip-installation
 ```
 
-It will 
+```
 Missing required dependencies, deselect to avoid auto installing
-eksctl, aws-iam-authenticator, kubectl, helm
+- eksctl
+- aws-iam-authenticator
+- kubectl
+- helm
 ```
 
 ```
