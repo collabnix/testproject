@@ -1,12 +1,17 @@
-Getting Started with Jenkins-X for EKS
+# Getting Started with Jenkins-X for EKS
 
-Pre-requisite
+## Pre-requisite
 
-Macbook
-brew tap jenkins-x/jx
+- Macbook
+- brew tap jenkins-x/jx
+
+```
 brew install jx
-Syntax
+```
 
+## Syntax
+
+```
 Examples:
   # create a cluster on Google Cloud
   jx create cluster gke --skip-installation
@@ -21,15 +26,25 @@ Available Commands:
 
 Usage:
   jx create cluster [kubernetes provider] [flags] [options]
-Installing Jenkins X on EKS
+```
 
+## Installing Jenkins X on EKS
+
+```
 jx create cluster eks --skip-installation
+```
+
+```
 Missing required dependencies, deselect to avoid auto installing
 - eksctl
 - aws-iam-authenticator
 - kubectl
 - helm
-Installing eksctl
+```
+
+## Installing eksctl
+
+```
 Downloading https://github.com/weaveworks/eksctl/releases/download/0.11.1/eksctl_Darwin_amd64.tar.gz to /Users/ajeetraina/.jx/bin/eksctl.tar.gz...
 Downloaded /Users/ajeetraina/.jx/bin/eksctl.tar.gz
 Installing aws-iam-authenticator
@@ -67,3 +82,5 @@ You can watch progress in the CloudFormation console: https://console.aws.amazon
 
 Initialising cluster ...
 eks cluster created. Skipping Jenkins X installation.
+```
+
