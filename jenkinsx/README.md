@@ -1,4 +1,4 @@
-# Getting Started with Jenkins-X
+# Getting Started with Jenkins-X for EKS 
 
 # Pre-requisite
 
