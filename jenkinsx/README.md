@@ -221,7 +221,7 @@ brew install weaveworks/tap/eksctl
 ```
 
 ```
-jx create cluster eks
+x create cluster eks
 Creating EKS cluster - this can take a while so please be patient...
 You can watch progress in the CloudFormation console: https://console.aws.amazon.com/cloudformation/
 [ℹ]  eksctl version 0.20.0
@@ -265,7 +265,7 @@ You can watch progress in the CloudFormation console: https://console.aws.amazon
 
 Initialising cluster ...
 ? Configured Jenkins installation type: Serverless Jenkins X Pipelines with Tekton
-amespace jx created
+Namespace jx created
 Context "iam-root-account@unique-painting-1591039510.us-east-2.eksctl.io" modified.
 Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
 Helm installed and configured
@@ -273,4 +273,52 @@ Helm installed and configured
 Using local value overrides file /Users/ajeetraina/myvalues.yaml
 Using helm values file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/ing-values-807537748
 
+Waiting for external loadbalancer to be created and update the nginx-ingress-controller service in kube-system namespace
+External loadbalancer created
+Waiting to find the external host name of the ingress controller Service in namespace kube-system with name jxing-nginx-ingress-controller
+
+On AWS we recommend using a custom DNS name to access services in your Kubernetes cluster to ensure you can use all of your Availability Zones
+If you do not have a custom DNS name you can use yet, then you can register a new one here: https://console.aws.amazon.com/route53/home?#DomainRegistration:
+? Would you like to register a wildcard DNS ALIAS to point at this ELB address?  Yes
 ```
+
+```
+[Captains-Bay]🚩 >  kubectl get svc -n kube-system jxing-nginx-ingress-controller
+NAME                             TYPE           CLUSTER-IP       EXTERNAL-IP                                                                     PORT(S)                      AGE
+jxing-nginx-ingress-controller   LoadBalancer   10.100.137.168   a841324debd73403dac8e8c0c30b4911-0ff50e830e470d1c.elb.us-east-2.amazonaws.com   80:30448/TCP,443:30043/TCP   4m1s
+[Captains-Bay]🚩 >  host a841324debd73403dac8e8c0c30b4911-0ff50e830e470d1c.elb.us-east-2.amazonaws.com
+a841324debd73403dac8e8c0c30b4911-0ff50e830e470d1c.elb.us-east-2.amazonaws.com has address 3.23.248.57
+a841324debd73403dac8e8c0c30b4911-0ff50e830e470d1c.elb.us-east-2.amazonaws.com has address 3.19.36.123
+[Captains-Bay]🚩 >  host 3.23.248.57.nip.io
+3.23.248.57.nip.io has address 3.23.248.57
+[Captains-Bay]🚩 >
+```
+
+```
+? Your custom DNS name:  3.23.248.57.nip.io
+About to insert/update DNS CNAME record into HostedZone /hostedzone/Z03960503SQL4HGKYUPTO with wildcard *.3.23.248.57.nip.io pointing to a841324debd73403dac8e8c0c30b4911-0ff50e830e470d1c.elb.us-east-2.amazonaws.com
+Updated HostZone ID /hostedzone/Z03960503SQL4HGKYUPTO successfully
+nginx ingress controller installed and configured
+Set up a Git username and API token to be able to perform CI/CD
+Creating a local Git user for github.com server
+? github.com username: collabnix
+To be able to create a repository on github.com we need an API Token
+Please click this URL and generate a token
+https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo
+
+Then COPY the token and enter it below:
+
+? API Token: ****************************************
+Select the CI/CD pipelines Git server and user
+? Do you wish to use github.com as the pipelines Git server: Yes
+Creating a pipelines Git user for github.com server
+To be able to create a repository on github.com we need an API Token
+Please click this URL and generate a token
+https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo
+
+Then COPY the token and enter it below:
+
+? API Token: ****************************************
+Setting the pipelines Git server https://github.com and user name collabnix.
+```
+
