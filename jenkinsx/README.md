@@ -182,4 +182,12 @@ Using local value overrides file /Users/ajeetraina/myvalues.yaml
 Setting the team build pack to kubernetes-workloads repo: https://github.com/jenkins-x-buildpacks/jenkins-x-kubernetes.git ref: master
 Installing jx into namespace jx
 Installing jenkins-x-platform version: 2.0.2259
+WARNING: waiting for install to be ready, if this is the first time then it will take a while to download images
+WARNING: deployment jenkins failed to become ready in namespace jx
+Jenkins X deployments ready in namespace jx
+Configuring the TeamSettings for ImportMode Jenkinsfile
+Configure Jenkins API Token
+waiting up to 0s for the Jenkins server to be healthy at URL http://jenkins.jx.3.21.153.172.nip.io/login
+
+
 ```
