@@ -259,3 +259,5 @@ Select the CI/CD pipelines Git server and user
 Setting the pipelines Git server https://github.com and user name collabnix.
 ```
 
+
+
