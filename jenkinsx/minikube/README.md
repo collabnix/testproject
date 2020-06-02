@@ -219,3 +219,43 @@ configmap/jenkins-x-pod-template-scala created
 error: unable to recognize "/var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/helm-template-workdir-205954485/jenkins-x/output/namespaces/jx/jenkins-x-platform/charts/jenkins/templates/part0-jenkins-master-deployment.yaml": no matches for kind "Deployment" in version "extensions/v1beta1"'
 [Captains-Bay]🚩 >
 ```
+
+# Fixing the Error
+
+Just change the entry under var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/helm-template-workdir-205954485/jenkins-x/output/namespaces/jx/jenkins-x-platform/charts/jenkins/templates/part0-jenkins-master-deployment.yaml
+
+```
+From apiVersion: extensions/v1beta1
+```
+
+```
+To: apiVersion: apps/v1
+```
+
+
+# Re-run the command
+
+```
+jx install --provider=kubernetes     --on-premise
+Command "install" is deprecated, it will be removed on Jun 1 2020. We now highly recommend you use jx boot instead. Please check https://jenkins-x.io/docs/getting-started/setup/boot/ for more details.
+? Configured Jenkins installation type: Serverless Jenkins X Pipelines with Tekton
+Context "minikube" modified.
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+Helm installed and configured
+existing ingress controller found, no need to install a new one
+Waiting for external loadbalancer to be created and update the nginx-ingress-controller service in kube-system namespace
+Using external IP: 192.168.64.2
+You can now configure a wildcard DNS pointing to the new Load Balancer address 192.168.64.2
+If you don't have a wildcard DNS setup then create a DNS (A) record and point it at: 192.168.64.2, then use the DNS domain in the next input...
+
+If you do not have a custom domain setup yet, Ingress rules will be set for magic DNS nip.io.
+Once you have a custom domain ready, you can update with the command jx upgrade ingress --cluster
+? Domain 192.168.64.2.nip.io
+nginx ingress controller installed and configured
+Set up a Git username and API token to be able to perform CI/CD
+? Do you wish to use collabnix as the local Git user for github.com server: Yes
+Select the CI/CD pipelines Git server and user
+? Do you wish to use github.com as the pipelines Git server: Yes
+Setting the pipelines Git server https://github.com and user name collabnix.
+```
+
