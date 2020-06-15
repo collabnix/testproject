@@ -1,4 +1,4 @@
-# Getting Started with Jenkins-X for EKS
+# Getting Started with Jenkins-X for AWS EKS
 
 ## Pre-requisite
 
