@@ -1,5 +1,9 @@
 ```
 [Captains-Bay]🚩 >  jx create cluster eks --skip-installation
+```
+
+
+```
 Creating EKS cluster - this can take a while so please be patient...
 You can watch progress in the CloudFormation console: https://console.aws.amazon.com/cloudformation/
 [ℹ]  eksctl version 0.20.0
@@ -41,6 +45,9 @@ You can watch progress in the CloudFormation console: https://console.aws.amazon
 Initialising cluster ...
 eks cluster created. Skipping Jenkins X installation.
 [Captains-Bay]🚩 >
+```
+
+```
 [Captains-Bay]🚩 >  jx install --domain=collabnix.cloud --provider=eks --no-tiller
 Command "install" is deprecated, it will be removed on Jun 1 2020. We now highly recommend you use jx boot instead. Please check https://jenkins-x.io/docs/getting-started/setup/boot/ for more details.
 ? Configured Jenkins installation type: Serverless Jenkins X Pipelines with Tekton
