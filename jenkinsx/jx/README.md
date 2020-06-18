@@ -444,3 +444,47 @@ Installation is currently looking: GOOD
 Using namespace 'jx' from context named 'iam-root-account@tpcluster1.us-east-2.eksctl.io' on server 'https://9DF6B0EA1430912CDDE5EDE8D8047B57.yl4.us-east-2.eks.amazonaws.com'.
 [Captains-Bay]🚩 >
 ```
+
+
+```
+[Captains-Bay]🚩 >  jx ns jx
+Using namespace 'jx' from context named 'iam-root-account@tpcluster1.us-east-2.eksctl.io' on server 'https://9DF6B0EA1430912CDDE5EDE8D8047B57.yl4.us-east-2.eks.amazonaws.com'.
+[Captains-Bay]🚩 >
+```
+
+```
+[Captains-Bay]🚩 >  jx add app jx-app-ui --version 0.1.49
+Preparing questions to configure jx-app-ui. If this is the first time you have installed the app, this may take a couple of minutes.
+Questions prepared.
+Installing UI in single-user mode
+Created Pull Request: https://github.com/collabnix/environment-tpcluster1-dev/pull/1
+Added app via Pull Request https://github.com/collabnix/environment-tpcluster1-dev/pull/1
+[Captains-Bay]🚩 >
+```
+
+```
+[Captains-Bay]🚩 >  jx add app jx-app-ui
+Preparing questions to configure jx-app-ui. If this is the first time you have installed the app, this may take a couple of minutes.
+Questions prepared.
+Installing UI in single-user mode
+Created Pull Request: https://github.com/collabnix/environment-tpcluster1-dev/pull/2
+Added app via Pull Request https://github.com/collabnix/environment-tpcluster1-dev/pull/2
+[Captains-Bay]🚩 >  jx ui -p 8080
+ERROR: Couldn't find the jx-app-ui app installed in the cluster. Did you add it via jx add app jx-app-ui?
+Waiting for the UI to be ready on ...
+.
+error: arguments in resource/name form must have a single resource and name
+```
+
+```
+[Captains-Bay]🚩 >  jx add app jx-app-ui
+Preparing questions to configure jx-app-ui. If this is the first time you have installed the app, this may take a couple of minutes.
+Questions prepared.
+Installing UI in single-user mode
+App jx-app-ui already installed.
+To upgrade the chartName use jx upgrade chartName <chartName> or jx upgrade apps --all
+WARNING: No changes made to the source code in /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/create-pr809712565. Code must be up to date!
+Already up to date
+[Captains-Bay]🚩 >
+```
+
