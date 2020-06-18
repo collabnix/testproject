@@ -488,3 +488,32 @@ Already up to date
 [Captains-Bay]🚩 >
 ```
 
+```
+[Captains-Bay]🚩 >  jx get environments
+NAME       LABEL       KIND        PROMOTE NAMESPACE     ORDER CLUSTER SOURCE                                                             REF    PR
+dev        Development Development Never   jx            0             https://github.com/collabnix/environment-tpcluster1-dev.git        master
+staging    Staging     Permanent   Auto    jx-staging    100           https://github.com/collabnix/environment-tpcluster1-staging.git    master
+production Production  Permanent   Manual  jx-production 200           https://github.com/collabnix/environment-tpcluster1-production.git master
+[Captains-Bay]🚩 >
+```
+
+```
+[Captains-Bay]🚩 >  jx get urls
+NAME  URL
+hook  http://hook-jx.3.12.7.211.nip.io
+nexus http://nexus-jx.3.12.7.211.nip.io
+[Captains-Bay]🚩 >
+```
+
+```
+[Captains-Bay]🚩 >  jx get crd
+Looking for cluster wide custom resource counts and namespaced custom resources in these namespaces:
+cert-manager
+default
+jx
+kube-node-lease
+kube-public
+kube-system
+velero
+this operation may take a while depending on how many custom resources exist
+```
