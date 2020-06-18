@@ -98,4 +98,69 @@ You must be authenticated against AWS as a user/assumed role with enough permiss
 The program runs automatically and begins creating the cluster in your specific region using eksctl.
 
 This will deploy two CloudFormation stacks, one for the cluster itself (or control plane) and another for the nodepool, deployed as EC2 instances. These CloudFormation stacks also create all other necessary services like a VPC, subnets, and more.
+```
 
+```
+[Captains-Bay]🚩 >  kubectl get nodes
+NAME                                           STATUS   ROLES    AGE     VERSION
+ip-192-168-0-201.us-east-2.compute.internal    Ready    <none>   8m44s   v1.16.8-eks-e16311
+ip-192-168-45-129.us-east-2.compute.internal   Ready    <none>   8m43s   v1.16.8-eks-e16311
+[Captains-Bay]🚩 >
+```
+  
+```
+AVAILABLE COMMANDS
+       o create-cluster
+
+       o create-fargate-profile
+
+       o create-nodegroup
+
+       o delete-cluster
+
+       o delete-fargate-profile
+
+       o delete-nodegroup
+
+       o describe-cluster
+
+       o describe-fargate-profile
+
+       o describe-nodegroup
+
+       o describe-update
+
+       o get-token
+
+       o help
+
+       o list-clusters
+
+       o list-fargate-profiles
+
+       o list-nodegroups
+
+       o list-tags-for-resource
+
+       o list-updates
+
+       o tag-resource
+
+       o untag-resource
+
+       o update-cluster-config
+       
+        o untag-resource
+
+       o update-cluster-config
+
+       o update-cluster-version
+
+       o update-kubeconfig
+
+       o update-nodegroup-config
+
+       o update-nodegroup-version
+
+       o wait
+```
