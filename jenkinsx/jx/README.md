@@ -380,3 +380,67 @@ Successfully added Helm repository chartmuseum.jenkins-x.io.
 ```
 
 While asking for Docker Registry , select yes to configure your Docker Registry rather thn default GKE
+
+```
+? Using Git user name: collabnix
+? Using organisation: collabnix
+Creating repository collabnix/environment-tpcluster1-staging
+Creating Git repository collabnix/environment-tpcluster1-staging
+Pushed Git repository to https://github.com/collabnix/environment-tpcluster1-staging
+
+Environment git repositories look good
+
+
+STEP: install-repositories command: /bin/sh -c jx step helm apply --boot --name repos in dir: /Users/ajeetraina/jenkins-x-boot-config/repositories
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/repositories/Chart.yaml to set the chart to version 1
+creating the lock configmap jx-lock-jx
+lock configmap jx-lock-jx created
+Ignoring templates/default-group.yaml
+No requirements file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/jx-helm-apply-792750803/repositories/requirements.yaml so not checking for missing versions
+
+cleaning the lock configmap jx-lock-jx
+
+STEP: install-pipelines command: /bin/sh -c jx step scheduler config apply --direct=true in dir: /Users/ajeetraina/jenkins-x-boot-config/prowConfig
+
+
+STEP: update-webhooks command: /bin/sh -c jx update webhooks --verbose --warn-on-fail in dir: /Users/ajeetraina/jenkins-x-boot-config/repositories
+
+Updating webhooks for Owner: collabnix and Repository: environment-tpcluster1-dev in git server: https://github.com
+Checking hooks for repository collabnix/environment-tpcluster1-dev with user collabnix
+Creating GitHub webhook for collabnix/environment-tpcluster1-dev for url http://hook-jx.3.12.7.211.nip.io/hook
+Updating webhooks for Owner: collabnix and Repository: environment-tpcluster1-production in git server: https://github.com
+Checking hooks for repository collabnix/environment-tpcluster1-production with user collabnix
+Creating GitHub webhook for collabnix/environment-tpcluster1-production for url http://hook-jx.3.12.7.211.nip.io/hook
+Updating webhooks for Owner: collabnix and Repository: environment-tpcluster1-staging in git server: https://github.com
+Checking hooks for repository collabnix/environment-tpcluster1-staging with user collabnix
+Creating GitHub webhook for collabnix/environment-tpcluster1-staging for url http://hook-jx.3.12.7.211.nip.io/hook
+
+STEP: verify-installation command: /bin/sh -c jx step verify install --pod-wait-time 30m in dir: /Users/ajeetraina/jenkins-x-boot-config/env
+
+verifying the Jenkins X installation in namespace jx
+verifying pods
+Checking pod statuses
+POD                                          STATUS
+jenkins-x-chartmuseum-774f8b95b-j2vhc        Running
+jenkins-x-controllerbuild-7cfd48df5d-rgv8f   Running
+jenkins-x-controllerrole-84d7cff8cc-cbk8r    Running
+jenkins-x-gcactivities-1592458200-b2255      Succeeded
+jenkins-x-gcpods-1592458200-ckpg9            Succeeded
+jenkins-x-heapster-679ff46bf4-wbn5l          Running
+jenkins-x-nexus-555999cf9c-k4pj5             Running
+lighthouse-foghorn-76d574d6b9-2wt6b          Running
+lighthouse-gc-jobs-1592458200-6pjd2          Succeeded
+lighthouse-keeper-56cd9fd8c-q6b65            Running
+lighthouse-webhooks-85445bbd86-2ggbt         Running
+lighthouse-webhooks-85445bbd86-2mqwk         Running
+tekton-pipelines-controller-5fd865d69b-rclc4 Running
+Verifying the git config
+Verifying username collabnix at git server github at https://github.com
+Found 0 organisations in git server https://github.com:
+Validated pipeline user collabnix on git server https://github.com
+Git tokens seem to be setup correctly
+Installation is currently looking: GOOD
+Using namespace 'jx' from context named 'iam-root-account@tpcluster1.us-east-2.eksctl.io' on server 'https://9DF6B0EA1430912CDDE5EDE8D8047B57.yl4.us-east-2.eks.amazonaws.com'.
+[Captains-Bay]🚩 >
+```
