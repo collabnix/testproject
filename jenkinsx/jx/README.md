@@ -313,4 +313,70 @@ STEP: install-nginx-controller command: /bin/sh -c jx step helm apply --boot --r
 Modified file /Users/ajeetraina/jenkins-x-boot-config/systems/jxing/Chart.yaml to set the chart to version 1
 ```
 
-In case you encounter issue, use this 
+In case you encounter issue, use this https://github.com/collabnix/testproject/blob/master/jenkinsx/jx/jenkins-x.yml
+
+```
+STEP: create-install-values command: /bin/sh -c jx step create install values -b in dir: /Users/ajeetraina/jenkins-x-boot-config/env
+
+Waiting to find the external host name of the ingress controller Service in namespace kube-system with name jxing-nginx-ingress-controller
+The Ingress address a20d191ba42ee49c49c52108ddc1807a-47e434127918b62f.elb.us-east-2.amazonaws.com is not an IP address. We recommend we try resolve it to a public IP address and use that for the domain to access services externally.
+Waiting for a20d191ba42ee49c49c52108ddc1807a-47e434127918b62f.elb.us-east-2.amazonaws.com to be resolvable to an IP address...
+WARNING: retrying after error: Address cannot be resolved yet a20d191ba42ee49c49c52108ddc1807a-47e434127918b62f.elb.us-east-2.amazonaws.com
+.
+.
+.
+.
+.
+
+a20d191ba42ee49c49c52108ddc1807a-47e434127918b62f.elb.us-east-2.amazonaws.com resolved to IP 3.12.7.211
+No domain flag provided so using default 3.12.7.211.nip.io to generate Ingress rules
+defaulting the domain to 3.12.7.211.nip.io and modified /Users/ajeetraina/jenkins-x-boot-config/jx-requirements.yml
+
+STEP: install-external-dns command: /bin/sh -c jx step helm apply --boot --remote --no-vault --name exdns in dir: /Users/ajeetraina/jenkins-x-boot-config/systems/external-dns
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/systems/external-dns/Chart.yaml to set the chart to version 1
+Adding missing Helm repo: charts.bitnami.com https://charts.bitnami.com/bitnami
+Successfully added Helm repository charts.bitnami.com.
+```
+
+```
+
+defaulting to secret storage scheme local found from requirements file at /Users/ajeetraina/jenkins-x-boot-config/jx-requirements.yml
+defaulting to secret base path to the cluster name tpcluster1 found from requirements file at /Users/ajeetraina/jenkins-x-boot-config/jx-requirements.yml
+generated schema file /Users/ajeetraina/jenkins-x-boot-config/env/parameters.schema.json from template /Users/ajeetraina/jenkins-x-boot-config/env/parameters.tmpl.schema.json
+? Jenkins X Admin Username admin
+? Jenkins X Admin Password [? for help] *************
+? Pipeline bot Git username collabnix
+? Pipeline bot Git email address contact@collabnix.com
+? Pipeline bot Git token [? for help] *****************************************
+X Sorry, your reply was invalid: value is too long. Max length is 40
+? Pipeline bot Git token [? for help] ****************************************
+Generated token 32f859792ba4a267f454af03539f5d8a06c013911, to use it press enter.
+This is the only time you will be shown it so remember to save it
+? HMAC token, used to validate incoming webhooks. Press enter to use the generated token [? for help]
+? Do you want to configure non default Docker Registry? Yes
+? Docker Registry Url https://index.docker.io/v1/
+? Docker Registry username ajeetraina
+? Docker Registry password [? for help] **********
+? Docker Registry email ajeetraina@gmail.com
+
+STEP: create-jx-auth-config command: /bin/sh -c jx step create templated --parameters-file=../../env/parameters.yaml --requirements-dir=../../ --template-file=jx-auth-configmap.tmpl.yaml --config-file=templates/jx-auth-configmap.yaml in dir: /Users/ajeetraina/jenkins-x-boot-config/systems/jx-auth
+
+Saved the rendered configuration into templates/jx-auth-configmap.yaml file
+
+STEP: install-jx-auth-config command: /bin/sh -c jx step helm apply --boot --remote --no-vault --name jx-auth in dir: /Users/ajeetraina/jenkins-x-boot-config/systems/jx-auth
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/systems/jx-auth/Chart.yaml to set the chart to version 1
+Ignoring templates/jx-auth-configmap.yaml
+No requirements file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/jx-helm-apply-255073581/jx-auth/requirements.yaml so not checking for missing versions
+
+STEP: install-jenkins-x command: /bin/sh -c jx step helm apply --boot --remote --name jenkins-x --provider-values-dir ../kubeProviders in dir: /Users/ajeetraina/jenkins-x-boot-config/env
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/env/Chart.yaml to set the chart to version 1
+Ignoring templates/.gitignore
+Applying the kubernetes overrides at ../kubeProviders/eks/values.tmpl.yaml
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+```
+
+While asking for Docker Registry , select yes to configure your Docker Registry rather thn default GKE
