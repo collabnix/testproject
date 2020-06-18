@@ -164,3 +164,121 @@ AVAILABLE COMMANDS
 
        o wait
 ```
+
+```
+[Captains-Bay]🚩 >  aws eks list-clusters
+{
+    "clusters": [
+        "tpcluster1"
+    ]
+}
+```
+
+```
+[Captains-Bay]🚩 >  jx boot
+Creating boot config with defaults, as not in an existing boot directory with a git repository.
+No Jenkins X pipeline file jenkins-x.yml or no jx boot requirements file jx-requirements.yml found. You are not running this command from inside a Jenkins X Boot git clone
+To continue we will clone https://github.com/jenkins-x/jenkins-x-boot-config.git @ master to jenkins-x-boot-config
+? Do you want to clone the Jenkins X Boot Git repository? Yes
+
+Cloning https://github.com/jenkins-x/jenkins-x-boot-config.git @ master to jenkins-x-boot-config
+Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config.git from https://github.com/jenkins-x/jenkins-x-versions.git
+Booting Jenkins X
+```
+
+```
+Captains-Bay]🚩 >  jx boot
+Creating boot config with defaults, as not in an existing boot directory with a git repository.
+No Jenkins X pipeline file jenkins-x.yml or no jx boot requirements file jx-requirements.yml found. You are not running this command from inside a Jenkins X Boot git clone
+To continue we will clone https://github.com/jenkins-x/jenkins-x-boot-config.git @ master to jenkins-x-boot-config
+? Do you want to clone the Jenkins X Boot Git repository? Yes
+
+Cloning https://github.com/jenkins-x/jenkins-x-boot-config.git @ master to jenkins-x-boot-config
+Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config.git from https://github.com/jenkins-x/jenkins-x-versions.git
+Booting Jenkins X
+
+STEP: validate-git command: /bin/sh -c jx step git validate in dir: /Users/ajeetraina/jenkins-x-boot-config/env
+
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+
+STEP: verify-preinstall command: /bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders" in dir: /Users/ajeetraina/jenkins-x-boot-config
+
+error: : unable to parse tpcluster1.us-east-2.eksctl.io as <project id>_<zone>_<cluster name>
+error: failed to interpret pipeline file /Users/ajeetraina/jenkins-x-boot-config/jenkins-x.yml: failed to run '/bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders"' command in directory '/Users/ajeetraina/jenkins-x-boot-config', output: ''
+[Captains-Bay]🚩 >
+
+```
+
+Open up jx-requirements.yml file downloaded in your mac under jenkins-x-boot-config.git directory
+
+```
+[Captains-Bay]🚩 >  cat jx-requirements.yml | head -n 10
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
+cluster:
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  provider: eks
+[Captains-Bay]🚩 >
+```
+
+```
+[Captains-Bay]🚩 >  vjx boot
+Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config from https://github.com/jenkins-x/jenkins-x-versions.git
+Booting Jenkins X
+
+STEP: validate-git command: /bin/sh -c jx step git validate in dir: /Users/ajeetraina/jenkins-x-boot-config/env
+
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+
+STEP: verify-preinstall command: /bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders" in dir: /Users/ajeetraina/jenkins-x-boot-config
+
+
+Currently connected cluster is tpcluster1 in region us-east-2
+? Do you want to jx boot the tpcluster1 cluster? [? for help] (Y/n)
+```
+
+```
+[Captains-Bay]🚩 >  vjx boot
+Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config from https://github.com/jenkins-x/jenkins-x-versions.git
+Booting Jenkins X
+
+STEP: validate-git command: /bin/sh -c jx step git validate in dir: /Users/ajeetraina/jenkins-x-boot-config/env
+
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+
+STEP: verify-preinstall command: /bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders" in dir: /Users/ajeetraina/jenkins-x-boot-config
+
+
+Currently connected cluster is tpcluster1 in region us-east-2
+? Do you want to jx boot the tpcluster1 cluster? Yes
+
+? Git Owner name for environment repositories collabnix
+Environment repos will be private, if you want to create public environment repos, please set environmentGitPublic to true in jx-requirements.yml
+? Comma-separated git provider usernames of approvers for development environment repository collabnix
+Locking version stream https://github.com/jenkins-x/jenkins-x-versions.git to release v1.0.500. Jenkins X will use this release rather than master to resolve all versions from now on.
+writing the following to the OWNERS file for the development environment repository:
+approvers:
+- collabnix
+reviewers:
+- collabnix
+WARNING: TLS is not enabled so your webhooks will be called using HTTP. This means your webhook secret will be sent to your cluster in the clear. See https://jenkins-x.io/docs/getting-started/setup/boot/#ingress for more information
+? Do you wish to continue? [? for help] (y/N) y
+```
+
+```
+
+Verifying the kubernetes cluster before we try to boot Jenkins X in namespace: jx
+Trying to lazily create any missing resources to get the current cluster ready to boot Jenkins X
+Attempting to lazily create the deploy namespace jx
+Namespace jx created
+Verifying Ingress...
+
+Now using namespace 'jx' on server 'https://9DF6B0EA1430912CDDE5EDE8D8047B57.yl4.us-east-2.eks.amazonaws.com'.
+
+Verifying the CLI packages using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: v1.0.500
+```
