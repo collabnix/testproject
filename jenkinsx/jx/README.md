@@ -1,6 +1,8 @@
 
 ## Cluster prerequisites
 
+- Ensure that the latest version of JX is installed.
+
 In order to create a cluster in CloudBees Jenkins X Distribution, you must have the following configured:
 
 An Amazon Web Services (AWS) account for creating kubernetes clusters
@@ -187,47 +189,7 @@ Booting Jenkins X
 ```
 
 ```
-Captains-Bay]🚩 >  jx boot
-Creating boot config with defaults, as not in an existing boot directory with a git repository.
-No Jenkins X pipeline file jenkins-x.yml or no jx boot requirements file jx-requirements.yml found. You are not running this command from inside a Jenkins X Boot git clone
-To continue we will clone https://github.com/jenkins-x/jenkins-x-boot-config.git @ master to jenkins-x-boot-config
-? Do you want to clone the Jenkins X Boot Git repository? Yes
-
-Cloning https://github.com/jenkins-x/jenkins-x-boot-config.git @ master to jenkins-x-boot-config
-Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config.git from https://github.com/jenkins-x/jenkins-x-versions.git
-Booting Jenkins X
-
-STEP: validate-git command: /bin/sh -c jx step git validate in dir: /Users/ajeetraina/jenkins-x-boot-config/env
-
-Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
-
-STEP: verify-preinstall command: /bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders" in dir: /Users/ajeetraina/jenkins-x-boot-config
-
-error: : unable to parse tpcluster1.us-east-2.eksctl.io as <project id>_<zone>_<cluster name>
-error: failed to interpret pipeline file /Users/ajeetraina/jenkins-x-boot-config/jenkins-x.yml: failed to run '/bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders"' command in directory '/Users/ajeetraina/jenkins-x-boot-config', output: ''
-[Captains-Bay]🚩 >
-
-```
-
-Open up jx-requirements.yml file downloaded in your mac under jenkins-x-boot-config.git directory
-
-```
-[Captains-Bay]🚩 >  cat jx-requirements.yml | head -n 10
-autoUpdate:
-  enabled: false
-  schedule: ""
-bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
-cluster:
-  gitKind: github
-  gitName: github
-  gitServer: https://github.com
-  namespace: jx
-  provider: eks
-[Captains-Bay]🚩 >
-```
-
-```
-[Captains-Bay]🚩 >  vjx boot
+[Captains-Bay]🚩 >  cjx boot
 Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config from https://github.com/jenkins-x/jenkins-x-versions.git
 Booting Jenkins X
 
@@ -237,48 +199,118 @@ Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
 
 STEP: verify-preinstall command: /bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders" in dir: /Users/ajeetraina/jenkins-x-boot-config
 
-
-Currently connected cluster is tpcluster1 in region us-east-2
-? Do you want to jx boot the tpcluster1 cluster? [? for help] (Y/n)
-```
-
-```
-[Captains-Bay]🚩 >  vjx boot
-Attempting to resolve version for boot config https://github.com/jenkins-x/jenkins-x-boot-config from https://github.com/jenkins-x/jenkins-x-versions.git
-Booting Jenkins X
-
-STEP: validate-git command: /bin/sh -c jx step git validate in dir: /Users/ajeetraina/jenkins-x-boot-config/env
-
-Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
-
-STEP: verify-preinstall command: /bin/sh -c jx step verify preinstall --provider-values-dir="kubeProviders" in dir: /Users/ajeetraina/jenkins-x-boot-config
-
-
-Currently connected cluster is tpcluster1 in region us-east-2
-? Do you want to jx boot the tpcluster1 cluster? Yes
-
-? Git Owner name for environment repositories collabnix
-Environment repos will be private, if you want to create public environment repos, please set environmentGitPublic to true in jx-requirements.yml
-? Comma-separated git provider usernames of approvers for development environment repository collabnix
-Locking version stream https://github.com/jenkins-x/jenkins-x-versions.git to release v1.0.500. Jenkins X will use this release rather than master to resolve all versions from now on.
 writing the following to the OWNERS file for the development environment repository:
 approvers:
 - collabnix
 reviewers:
 - collabnix
 WARNING: TLS is not enabled so your webhooks will be called using HTTP. This means your webhook secret will be sent to your cluster in the clear. See https://jenkins-x.io/docs/getting-started/setup/boot/#ingress for more information
-? Do you wish to continue? [? for help] (y/N) y
-```
-
-```
+? Do you wish to continue? Yes
 
 Verifying the kubernetes cluster before we try to boot Jenkins X in namespace: jx
 Trying to lazily create any missing resources to get the current cluster ready to boot Jenkins X
-Attempting to lazily create the deploy namespace jx
-Namespace jx created
 Verifying Ingress...
 
-Now using namespace 'jx' on server 'https://9DF6B0EA1430912CDDE5EDE8D8047B57.yl4.us-east-2.eks.amazonaws.com'.
+Using namespace 'jx' from context named 'iam-root-account@tpcluster1.us-east-2.eksctl.io' on server 'https://9DF6B0EA1430912CDDE5EDE8D8047B57.yl4.us-east-2.eks.amazonaws.com'.
 
 Verifying the CLI packages using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: v1.0.500
+using version 2.1.71 of jx
+CLI packages kubectl, git, helm seem to be setup correctly
+NAME                          VERSION
+Kubernetes cluster            v1.16.8-eks-e16311
+kubectl (installed in JX_BIN) v1.13.2
+git                           2.17.2 (Apple Git-113)
+
+Verifying Storage...
+WARNING: Your requirements have not enabled cloud storage for logs - we recommend enabling this for kubernetes provider eks
+WARNING: Your requirements have not enabled cloud storage for reports - we recommend enabling this for kubernetes provider eks
+WARNING: Your requirements have not enabled cloud storage for repository - we recommend enabling this for kubernetes provider eks
+WARNING: Your requirements have not enabled cloud storage for backup - we recommend enabling this for kubernetes provider eks
+Storage configuration looks good
+
+Helm installed and configured
+Ensuring Helm chart repository https://storage.googleapis.com/chartmuseum.jenkins-x.io is configured
+verified there is a ConfigMap config in namespace jx
+verified there is a ConfigMap plugins in namespace jx
+Attempting to lazily create the IAM Role for Service Accounts permissions
+Enabling IRSA for cluster tpcluster1 associating the IAM Open ID Connect provider
+[ℹ]  eksctl version 0.11.1
+[ℹ]  using region us-east-2
+[ℹ]  IAM Open ID Connect provider is already associated with cluster "tpcluster1" in "us-east-2"
+Creating CloudFormation stack JenkinsXPolicies-e6fbc9c1-ef27-428b-af79-47e4e496a6e7
+Waiting until CloudFormation stack JenkinsXPolicies-e6fbc9c1-ef27-428b-af79-47e4e496a6e7 is created
+Describing stack JenkinsXPolicies-e6fbc9c1-ef27-428b-af79-47e4e496a6e7 to extract outputs
+Deleting IRSA ServiceAccounts
+[ℹ]  eksctl version 0.11.1
+[ℹ]  using region us-east-2
+[ℹ]  comparing 6 iamserviceaccounts defined in the given config ("/var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/irsa-template-673460584") against remote state
+[ℹ]  combined include rules: *
+[ℹ]  6 iamserviceaccounts (cert-manager/cm-cainjector, cert-manager/cm-cert-manager, jx/exdns-external-dns, jx/jenkins-x-controllerbuild, jx/jxui, jx/tekton-bot) were included (based on the include/exclude rules)
+[ℹ]  6 parallel tasks: { 2 sequential sub-tasks: { delete IAM role for serviceaccount "jx/exdns-external-dns", delete serviceaccount "jx/exdns-external-dns" }, 2 sequential sub-tasks: { delete IAM role for serviceaccount "cert-manager/cm-cert-manager", delete serviceaccount "cert-manager/cm-cert-manager" }, 2 sequential sub-tasks: { delete IAM role for serviceaccount "jx/jxui", delete serviceaccount "jx/jxui" }, 2 sequential sub-tasks: { delete IAM role for serviceaccount "cert-manager/cm-cainjector", delete serviceaccount "cert-manager/cm-cainjector" }, 2 sequential sub-tasks: { delete IAM role for serviceaccount "jx/jenkins-x-controllerbuild", delete serviceaccount "jx/jenkins-x-controllerbuild" }, 2 sequential sub-tasks: { delete IAM role for serviceaccount "jx/tekton-bot", delete serviceaccount "jx/tekton-bot" } }
+[ℹ]  will delete stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jxui"
+[ℹ]  waiting for stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jxui" to get deleted
+[ℹ]  will delete stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cainjector"
+[ℹ]  waiting for stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cainjector" to get deleted
+[ℹ]  will delete stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jenkins-x-controllerbuild"
+[ℹ]  waiting for stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jenkins-x-controllerbuild" to get deleted
+[ℹ]  will delete stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cert-manager"
+[ℹ]  waiting for stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cert-manager" to get deleted
+[ℹ]  will delete stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-exdns-external-dns"
+[ℹ]  waiting for stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-exdns-external-dns" to get deleted
+[ℹ]  will delete stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-tekton-bot"
+[ℹ]  waiting for stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-tekton-bot" to get deleted
+[ℹ]  serviceaccount "cert-manager/cm-cert-manager" was already deleted
+[ℹ]  deleted serviceaccount "jx/tekton-bot"
+[ℹ]  deleted serviceaccount "jx/jxui"
+[ℹ]  deleted serviceaccount "cert-manager/cm-cainjector"
+[ℹ]  deleted serviceaccount "jx/exdns-external-dns"
+[ℹ]  deleted serviceaccount "jx/jenkins-x-controllerbuild"
+Creating IRSA ServiceAccounts
+[ℹ]  eksctl version 0.11.1
+[ℹ]  using region us-east-2
+[ℹ]  combined include rules: *
+[ℹ]  6 iamserviceaccounts (cert-manager/cm-cainjector, cert-manager/cm-cert-manager, jx/exdns-external-dns, jx/jenkins-x-controllerbuild, jx/jxui, jx/tekton-bot) were included (based on the include/exclude rules)
+[!]  metadata of serviceaccounts that exist in Kubernetes will be updated, as --override-existing-serviceaccounts was set
+[ℹ]  6 parallel tasks: { 2 sequential sub-tasks: { create IAM role for serviceaccount "jx/tekton-bot", create serviceaccount "jx/tekton-bot" }, 2 sequential sub-tasks: { create IAM role for serviceaccount "jx/exdns-external-dns", create serviceaccount "jx/exdns-external-dns" }, 2 sequential sub-tasks: { create IAM role for serviceaccount "cert-manager/cm-cert-manager", create serviceaccount "cert-manager/cm-cert-manager" }, 2 sequential sub-tasks: { create IAM role for serviceaccount "cert-manager/cm-cainjector", create serviceaccount "cert-manager/cm-cainjector" }, 2 sequential sub-tasks: { create IAM role for serviceaccount "jx/jenkins-x-controllerbuild", create serviceaccount "jx/jenkins-x-controllerbuild" }, 2 sequential sub-tasks: { create IAM role for serviceaccount "jx/jxui", create serviceaccount "jx/jxui" } }
+[ℹ]  building iamserviceaccount stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-exdns-external-dns"
+[ℹ]  building iamserviceaccount stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jxui"
+[ℹ]  building iamserviceaccount stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jenkins-x-controllerbuild"
+[ℹ]  building iamserviceaccount stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cainjector"
+[ℹ]  building iamserviceaccount stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cert-manager"
+[ℹ]  building iamserviceaccount stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-tekton-bot"
+[ℹ]  deploying stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jxui"
+[ℹ]  deploying stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cert-manager"
+[ℹ]  deploying stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-exdns-external-dns"
+[ℹ]  deploying stack "eksctl-tpcluster1-addon-iamserviceaccount-cert-manager-cm-cainjector"
+[ℹ]  deploying stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-jenkins-x-controllerbuild"
+[ℹ]  deploying stack "eksctl-tpcluster1-addon-iamserviceaccount-jx-tekton-bot"
+[ℹ]  created serviceaccount "jx/jenkins-x-controllerbuild"
+[ℹ]  created serviceaccount "cert-manager/cm-cainjector"
+[ℹ]  created serviceaccount "jx/tekton-bot"
+[ℹ]  created serviceaccount "cert-manager/cm-cert-manager"
+[ℹ]  created serviceaccount "jx/jxui"
+[ℹ]  created serviceaccount "jx/exdns-external-dns"
+Cluster looks good, you are ready to 'jx boot' now!
+
+
+STEP: install-jx-crds command: /bin/sh -c jx upgrade crd in dir: /Users/ajeetraina/jenkins-x-boot-config
+
+Jenkins X CRDs upgraded with success
+
+STEP: install-velero command: /bin/sh -c jx step helm apply --boot --remote --no-vault --name velero in dir: /Users/ajeetraina/jenkins-x-boot-config/systems/velero
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/systems/velero/Chart.yaml to set the chart to version 1
+Namespace velero created
+
+STEP: install-velero-backups command: /bin/sh -c jx step helm apply --boot --remote --no-vault --name velero-backups in dir: /Users/ajeetraina/jenkins-x-boot-config/systems/velero-backups
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/systems/velero-backups/Chart.yaml to set the chart to version 1
+Ignoring templates/default-backup.yaml
+No requirements file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/jx-helm-apply-413282303/velero-backups/requirements.yaml so not checking for missing versions
+
+STEP: install-nginx-controller command: /bin/sh -c jx step helm apply --boot --remote --no-vault --name jxing in dir: /Users/ajeetraina/jenkins-x-boot-config/systems/jxing
+
+Modified file /Users/ajeetraina/jenkins-x-boot-config/systems/jxing/Chart.yaml to set the chart to version 1
 ```
+
+In case you encounter issue, use this 
