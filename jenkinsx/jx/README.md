@@ -98,7 +98,7 @@ You must be authenticated against AWS as a user/assumed role with enough permiss
 The program runs automatically and begins creating the cluster in your specific region using eksctl.
 
 This will deploy two CloudFormation stacks, one for the cluster itself (or control plane) and another for the nodepool, deployed as EC2 instances. These CloudFormation stacks also create all other necessary services like a VPC, subnets, and more.
-```
+
 
 ```
 [Captains-Bay]🚩 >  kubectl get nodes
