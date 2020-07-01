@@ -89,7 +89,7 @@ README.md		env			jenkins-x-release.yml	kubeProviders		systems
 ```
 
 ```
-jx boot
+ jx boot
 Creating boot config with defaults, as not in an existing boot directory with a git repository.
 No Jenkins X pipeline file jenkins-x.yml or no jx boot requirements file jx-requirements.yml found. You are not running this command from inside a Jenkins X Boot git clone
 To continue we will clone https://github.com/cloudbees/cloudbees-jenkins-x-boot-config.git @ 2.1.78+cjxd.11 to cloudbees-jenkins-x-boot-config
@@ -137,7 +137,6 @@ Installing helm secrets plugin
 Verifying the CLI packages using version stream URL: https://github.com/cloudbees/cloudbees-jenkins-x-versions.git and git ref: v0.0.36
 using version 2.1.78+cjxd.11 of jx
 CLI packages kubectl, git, helm seem to be setup correctly
-NAME                          VERSION
 NAME                          VERSION
 Kubernetes cluster            v1.14.10-gke.36
 kubectl (installed in JX_BIN) v1.13.2
@@ -236,6 +235,59 @@ Installing vault-operator operator with helm values: [image.repository=banzaiclo
 Vault operator installed in namespace jx
 Applying vault ingress in namespace jx for vault name jx-vault-mytestproject
 ingress.extensions/jx-vault-mytestproject created
+Unable to find service account mytestproject-vt, checking if we have enough permission to create
+Creating service account mytestproject-vt
+Assigning role roles/storage.objectAdmin
+Assigning role roles/cloudkms.admin
+Assigning role roles/cloudkms.cryptoKeyEncrypterDecrypter
+Downloading service account key
+GCS bucket 'jx-vault-mytestproject-bucket' was created for Vault backend
+Vault 'jx-vault-mytestproject' in namespace 'jx' created
+
+STEP: create-helm-values command: /bin/sh -c jx step create values --name parameters in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/env
+
+defaulting to secret storage scheme vault found from requirements file at /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/jx-requirements.yml
+defaulting to secret base path to the cluster name mytestproject found from requirements file at /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/jx-requirements.yml
+generated schema file /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/env/parameters.schema.json from template /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/env/parameters.tmpl.schema.json
+Waiting for vault to be initialized and unsealed...
+Waiting for vault to be initialized and unsealed...
+? Jenkins X Admin Username admin
+? Jenkins X Admin Password [? for help] **********
+? Pipeline bot Git username collabnix-bot
+? Pipeline bot Git email address rainaajeetsingh1981@gmail.com
+? A token for the Git user that will perform git operations inside a pipeline. This includes environment repository creation, and so this token should have full repository permissions. To create a token go to https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo then enter a name, click Generate token, and copy and paste the token into this prompt.
+? Pipeline bot Git token ****************************************
+Generated token 38f5a373c5c662079a336114e50968e43f18f0769, to use it press enter.
+This is the only time you will be shown it so remember to save it
+? HMAC token, used to validate incoming webhooks. Press enter to use the generated token [? for help]
+? Do you want to configure non default Docker Registry? Yes
+? Docker Registry Url https://index.docker.io/v1/
+? Docker Registry username ajeetraina
+? Docker Registry password [? for help] **********
+? Docker Registry email ajeetraina@gmail.com
+
+STEP: create-jx-auth-config command: /bin/sh -c jx step create templated --parameters-file=../../env/parameters.yaml --requirements-dir=../../ --template-file=jx-auth-configmap.tmpl.yaml --config-file=templates/jx-auth-configmap.yaml in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/systems/jx-auth
+
+Saved the rendered configuration into templates/jx-auth-configmap.yaml file
+
+STEP: install-jx-auth-config command: /bin/sh -c jx step helm apply --boot --remote --no-vault --name jx-auth in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/systems/jx-auth
+
+Modified file /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/systems/jx-auth/Chart.yaml to set the chart to version 1
+Ignoring templates/jx-auth-configmap.yaml
+No requirements file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/jx-helm-apply-084491211/jx-auth/requirements.yaml so not checking for missing versions
+
+
+STEP: install-jenkins-x command: /bin/sh -c jx step helm apply --boot --remote --name jenkins-x --provider-values-dir ../kubeProviders in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/env
+
+Modified file /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/env/Chart.yaml to set the chart to version 1
+Ignoring templates/.gitignore
+Applying the kubernetes overrides at ../kubeProviders/gke/values.tmpl.yaml
+
+
+STEP: verify-jenkins-x-environment command: /bin/sh -c jx step verify env in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config
+
+Storing the requirements in team settings in the dev environment
+Validating git repository for dev environment at URL https://github.com/jenkins-x-testproject/environment-mytestproject-dev.git
 
 ```
 
