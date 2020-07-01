@@ -332,4 +332,187 @@ GitHub has been notified of this commit’s build result
 Finished: SUCCESS
 ```
 
+## Testing with Node Http Application
+
+```
+ jx create quickstart
+? select the quickstart you wish to create node-http
+Using Git provider github.com at https://github.com
+? Do you wish to use ajeetraina as the Git user name? Yes
+? Who should be the owner of the repository? ajeetraina
+? Enter the new repository name:  tp
+Creating repository ajeetraina/tp
+Generated quickstart at /Users/ajeetraina/01july2020/tp
+Created project at /Users/ajeetraina/01july2020/tp
+The directory /Users/ajeetraina/01july2020/tp is not yet using git
+? Would you like to initialise git now? Yes
+? Commit message:  Initial import
+
+Git repository created
+performing pack detection in folder /Users/ajeetraina/01july2020/tp
+--> Draft detected SVG (55.716377%)
+--> Could not find a pack for SVG. Trying to find the next likely language match...
+--> Draft detected JavaScript (14.262482%)
+selected pack: /Users/ajeetraina/.jx/draft/packs/github.com/collabnix/jenkins-x-kubernetes/packs/javascript
+replacing placeholders in directory /Users/ajeetraina/01july2020/tp
+app name: tp, git server: github.com, org: ajeetraina, Docker registry org: famous-hull-276807
+skipping directory "/Users/ajeetraina/01july2020/tp/.git"
+Draft pack javascript added
+? Would you like to define a different preview namespace? Yes
+? Enter the name for the preview namespace:  jx-previews
+Pushed Git repository to https://github.com/ajeetraina/tp
+Created Jenkins Project: http://jenkins.jx.34.67.95.227.nip.io/job/ajeetraina/job/tp/
+
+Watch pipeline activity via:    jx get activity -f tp -w
+Browse the pipeline log via:    jx get build logs ajeetraina/tp/master
+You can list the pipelines via: jx get pipelines
+When the pipeline is complete:  jx get applications
+
+For more help on available commands see: https://jenkins-x.io/developing/browsing/
+
+Note that your first pipeline may take a few minutes to start while the necessary images get downloaded!
+
+Triggered Jenkins job:  http://jenkins.jx.34.67.95.227.nip.io/job/ajeetraina/job/tp/
+Creating GitHub webhook for ajeetraina/tp for url http://jenkins.jx.34.67.95.227.nip.io/github-webhook/
+[Captains-Bay]🚩 >
+```
+
+```
+jx get pipelines
+Name                                                   URL                                                                                                       LAST_BUILD STATUS   DURATION
+ajeetraina/jenkinsx-tutorial/master                    http://jenkins.jx.34.67.95.227.nip.io/job/ajeetraina/job/jenkinsx-tutorial/job/master/                    #1         FAILURE  53.123µs
+ajeetraina/test2/master                                http://jenkins.jx.34.67.95.227.nip.io/job/ajeetraina/job/test2/job/master/                                #2         SUCCESS  49.721µs
+ajeetraina/tp/master                                   http://jenkins.jx.34.67.95.227.nip.io/job/ajeetraina/job/tp/job/master/                                   #1         Building -1ns(est.)
+Hubstation/demotest/master                             http://jenkins.jx.34.67.95.227.nip.io/job/Hubstation/job/demotest/job/master/                             #1         FAILURE  362.912µs
+Hubstation/environment-sparrowcrocus-production/master http://jenkins.jx.34.67.95.227.nip.io/job/Hubstation/job/environment-sparrowcrocus-production/job/master/ #1         SUCCESS  234.377µs
+Hubstation/environment-sparrowcrocus-staging/master    http://jenkins.jx.34.67.95.227.nip.io/job/Hubstation/job/environment-sparrowcrocus-staging/job/master/    #1         SUCCESS  238.599µs
+[Captains-Bay]🚩 >
+```
+
+```
+ jx get activity -f tp -w
+STEP                         STARTED AGO DURATION STATUS
+ajeetraina/tp/master #1            3m43s          Running Version: 0.0.1
+  Checkout Source                  2m53s       6s Succeeded
+  CI Build and push snapshot       2m47s          NotExecuted
+  Build Release                    2m47s      43s Succeeded
+  Promote to Environments           2m4s          Pending
+  Promote: staging                 1m30s          Running
+    PullRequest                    1m30s          Running  PullRequest: https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1
+ ```
+ 
+ ```
+ 16c226cf2a8: Preparing
+7fd597d009e4: Preparing
+7c6ab5fb7059: Preparing
+ed271eac23e9: Preparing
+156ff16f37e4: Preparing
+ed271eac23e9: Waiting
+156ff16f37e4: Waiting
+7c6ab5fb7059: Pushed
+00c41c74fce6: Pushed
+1ae22c0afb1e: Pushed
+e16c226cf2a8: Pushed
+ed271eac23e9: Pushed
+156ff16f37e4: Pushed
+7fd597d009e4: Pushed
+0.0.1: digest: sha256:7e754207e3f6fc195011753c93326499158a7e81ad718fe94d456ca160da3aeb size: 1786
+There is a new version (1.12.0) of Skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+[Pipeline] sh
+++ cat VERSION
++ jx step post build --image 10.39.252.153:5000/ajeetraina/tp:0.0.1
+no CVE provider running in the current jx namespace so skip adding image to be analysed
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Promote to Environments)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] dir
+Running in /home/jenkins/agent/workspace/ajeetraina_tp_master/charts/tp
+[Pipeline] {
+[Pipeline] sh
+++ cat ../../VERSION
++ jx step changelog --batch-mode --version v0.0.1
+Generating change log from git ref 4bb19187311fed19c7795fc163de9d308543e12a => 2d49c952c8af1202b6597613ffde14f0732936de
+Associating user x-0 in users.jenkins.io with email jenkins-x@googlegroups.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 7cdf75c1904f2f347c9d87d4e7b5d56647d2888c with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Associating user x-0 in users.jenkins.io with email jenkins-x@googlegroups.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 7cdf75c1904f2f347c9d87d4e7b5d56647d2888c with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Finding issues in commit messages using git format
+Associating user x-0 in users.jenkins.io with email jenkins-x@googlegroups.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 5dc3cf78d4c4bad2f4ccf6bd0e695a31fa0345f2 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Associating user x-0 in users.jenkins.io with email jenkins-x@googlegroups.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 5dc3cf78d4c4bad2f4ccf6bd0e695a31fa0345f2 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+WARNING: No release found for ajeetraina/tp and tag v0.0.1 so creating a new release
+Updated the release information at https://github.com/ajeetraina/tp/releases/tag/v0.0.1
+generated: /home/jenkins/agent/workspace/ajeetraina_tp_master/charts/tp/templates/release.yaml
+Created Release tp-0-0-1 resource in namespace jx
+Updating PipelineActivity ajeetraina-tp-master-1 with version 0.0.1
+Updated PipelineActivities ajeetraina-tp-master-1 with release notes URL: https://github.com/ajeetraina/tp/releases/tag/v0.0.1
+[Pipeline] sh
++ jx step helm release
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file tp-0.0.1.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+[Pipeline] sh
+++ cat ../../VERSION
++ jx promote -b --all-auto --timeout 1h --version 0.0.1
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Promoting app tp version 0.0.1 to namespace jx-staging
+WARNING: Waiting for the fork of ajeetraina/environment-sparrowcrocus-staging to appear...
+Forked Git repository to https://github.com/ajeetraina/environment-sparrowcrocus-staging
+Created Pull Request: https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1
+Added label updatebot to Pull Request https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1
+WARNING: Failed to query the Pull Request last commit status for https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1 ref b536cfcef116f0f74a639bc4ba4044a2ed0baf9a Could not find a status for repository Hubstation/environment-sparrowcrocus-staging with ref b536cfcef116f0f74a639bc4ba4044a2ed0baf9a
+WARNING: Failed to query the Pull Request last commit status for https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1 ref b536cfcef116f0f74a639bc4ba4044a2ed0baf9a Could not find a status for repository Hubstation/environment-sparrowcrocus-staging with ref b536cfcef116f0f74a639bc4ba4044a2ed0baf9a
+got git provider status pending from PR https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1
+got git provider status pending from PR https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1
+got git provider status pending from PR https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1
+Pull Request https://github.com/Hubstation/environment-sparrowcrocus-staging/pull/1 is merged at sha b428143a803988304f46ba72ad52bde4b76e3aa8
+Merge commit has not yet any statuses on repo Hubstation/environment-sparrowcrocus-staging merge sha b428143a803988304f46ba72ad52bde4b76e3aa8
+merge status: pending for URL https://api.github.com/repos/Hubstation/environment-sparrowcrocus-staging/statuses/b428143a803988304f46ba72ad52bde4b76e3aa8 with target: http://jenkins.jx.34.67.95.227.nip.io/job/Hubstation/job/environment-sparrowcrocus-staging/job/master/2/display/redirect description: This commit is being built
+merge status: success for URL https://api.github.com/repos/Hubstation/environment-sparrowcrocus-staging/statuses/b428143a803988304f46ba72ad52bde4b76e3aa8 with target: http://jenkins.jx.34.67.95.227.nip.io/job/Hubstation/job/environment-sparrowcrocus-staging/job/master/2/display/redirect description: This commit looks good
+Merge status checks all passed so the promotion worked!
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
+```
+
+
 
