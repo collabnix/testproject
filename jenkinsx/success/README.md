@@ -289,6 +289,72 @@ STEP: verify-jenkins-x-environment command: /bin/sh -c jx step verify env in dir
 Storing the requirements in team settings in the dev environment
 Validating git repository for dev environment at URL https://github.com/jenkins-x-testproject/environment-mytestproject-dev.git
 
+WARNING: Waiting for the fork of collabnix-bot/environment-mytestproject-dev to appear...
+Forked Git repository to https://github.com/collabnix-bot/environment-mytestproject-dev
+Pushed Git repository to https://github.com/jenkins-x-testproject/environment-mytestproject-dev
+Validating git repository for production environment at URL https://github.com/jenkins-x-testproject/environment-mytestproject-production.git
+Using Git provider github at https://github.com
+? Using Git user name: collabnix-bot
+? Using organisation: jenkins-x-testproject
+Creating repository jenkins-x-testproject/environment-mytestproject-staging
+Creating Git repository jenkins-x-testproject/environment-mytestproject-staging
+Pushed Git repository to https://github.com/jenkins-x-testproject/environment-mytestproject-staging
+
+Environment git repositories look good
+
+
+STEP: install-repositories command: /bin/sh -c jx step helm apply --boot --name repos in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/repositories
+
+Modified file /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/repositories/Chart.yaml to set the chart to version 1
+creating the lock configmap jx-lock-jx
+lock configmap jx-lock-jx created
+Ignoring templates/default-group.yaml
+No requirements file: /var/folders/mq/z4bncmrs28sbtktxpck2whcm0000gn/T/jx-helm-apply-666331140/repositories/requirements.yaml so not checking for missing versions
+
+cleaning the lock configmap jx-lock-jx
+
+STEP: install-pipelines command: /bin/sh -c jx step scheduler config apply --direct=true in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/prowConfig
+
+
+STEP: update-webhooks command: /bin/sh -c jx update webhooks --verbose --warn-on-fail in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/repositories
+
+Updating webhooks for Owner: jenkins-x-testproject and Repository: environment-mytestproject-dev in git server: https://github.com
+Checking hooks for repository jenkins-x-testproject/environment-mytestproject-dev with user collabnix-bot
+Creating GitHub webhook for jenkins-x-testproject/environment-mytestproject-dev for url http://hook-jx.35.237.205.64.nip.io/hook
+Updating webhooks for Owner: jenkins-x-testproject and Repository: environment-mytestproject-production in git server: https://github.com
+Checking hooks for repository jenkins-x-testproject/environment-mytestproject-production with user collabnix-bot
+Creating GitHub webhook for jenkins-x-testproject/environment-mytestproject-production for url http://hook-jx.35.237.205.64.nip.io/hook
+Updating webhooks for Owner: jenkins-x-testproject and Repository: environment-mytestproject-staging in git server: https://github.com
+Checking hooks for repository jenkins-x-testproject/environment-mytestproject-staging with user collabnix-bot
+Creating GitHub webhook for jenkins-x-testproject/environment-mytestproject-staging for url http://hook-jx.35.237.205.64.nip.io/hook
+
+STEP: verify-installation command: /bin/sh -c jx step verify install --pod-wait-time 30m in dir: /Users/ajeetraina/july1/cloudbees-jenkins-x-boot-config/env
+
+verifying the Jenkins X installation in namespace jx
+verifying pods
+Checking pod statuses
+POD                                                STATUS
+jenkins-x-chartmuseum-d87cbb789-h4kzz              Running
+jenkins-x-controllerbuild-847f4f4b79-t6g64         Running
+jenkins-x-controllerrole-75d8d87d98-p5p2l          Running
+jenkins-x-heapster-54bdffbc79-fwlds                Running
+jenkins-x-nexus-b69b7745b-xnzrl                    Running
+jx-vault-mytestproject-0                           Running
+jx-vault-mytestproject-configurer-5547f59f5b-d2vjk Running
+lighthouse-foghorn-dd76f6664-w9ql4                 Running
+lighthouse-keeper-5f89b8b978-chkdp                 Running
+lighthouse-webhooks-5cdf4b9f65-6mchq               Running
+lighthouse-webhooks-5cdf4b9f65-nqjvw               Running
+tekton-pipelines-controller-88c7cd9d5-4hr7z        Running
+vault-operator-75d5446bb7-mnj6h                    Running
+Verifying the git config
+Verifying username collabnix-bot at git server github at https://github.com
+Found 1 organisations in git server https://github.com: jenkins-x-testproject
+Validated pipeline user collabnix-bot on git server https://github.com
+Git tokens seem to be setup correctly
+Installation is currently looking: GOOD
+Using namespace 'jx' from context named 'gke_famous-hull-276807_us-east1-b_mytestproject' on server 'https://34.73.89.190'.
+
 ```
 
 
