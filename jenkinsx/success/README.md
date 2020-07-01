@@ -11,11 +11,10 @@ Installing kubectl
 ```
 
 ```
-
 [Captains-Bay]🚩 >  jx create cluster gke --skip-installation -n mytestproject
 Your browser has been opened to visit:
 
-    https://accounts.google.com/o/oauth2/auth?client_id=32555940559.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8085%2F&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&code_challenge=MzB8fXXJBFwVv2v4oke_xFKm1Lvt694hV_nTj55LnnI&code_challenge_method=S256&access_type=offline&response_type=code&prompt=select_account
+    https://accounts.google.com/o/oauth2/auth?clieccounts.reauth&code_challenge=MzB8fXXJBFwVv2v4oke_xFKm1Lvt694hV_nTj55LnnI&code_challenge_method=S256&access_type=offline&response_type=code&prompt=select_account
 
 
 ? Google Cloud Project: famous-hull-276807
@@ -60,7 +59,7 @@ NAME                                           STATUS   ROLES    AGE   VERSION
 gke-mytestproject-default-pool-c87818e4-3vbd   Ready    <none>   50s   v1.14.10-gke.36
 gke-mytestproject-default-pool-c87818e4-551t   Ready    <none>   50s   v1.14.10-gke.36
 gke-mytestproject-default-pool-c87818e4-qg4b   Ready    <none>   50s   v1.14.10-gke.36
-``
+```
 
 First clone the Jenkins X Boot configuration repo and cd into your newly cloned repo.
 
