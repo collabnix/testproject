@@ -365,3 +365,36 @@ production Production  Permanent   Manual  jx-production 200           https://g
 [Captains-Bay]🚩 >
 ```
 
+# Bringing up UI
+
+```
+jx ns jx
+Using namespace 'jx' from context named 'gke_famous-hull-276807_us-east1-b_mytestproject' on server 'https://34.73.89.190'.
+```
+
+```
+[Captains-Bay]🚩 >  jx add app jx-app-ui --version 0.1.211
+WARNING: No secrets found on "helm/repos" due: reading the secret "helm/repos" from vault: no secret "helm/repos" not found in vault
+Read credentials for http://chartmuseum.jenkins-x.io from vault helm/repos
+Preparing questions to configure jx-app-ui. If this is the first time you have installed the app, this may take a couple of minutes.
+Questions prepared.
+Checking if TLS is enabled in the cluster
+Created Pull Request: https://github.com/jenkins-x-testproject/environment-mytestproject-dev/pull/1
+Added app via Pull Request https://github.com/jenkins-x-testproject/environment-mytestproject-dev/pull/1
+```
+
+```
+[Captains-Bay]🚩 >  jx gadd app jx-app-ui --version 0.1.211kubectl get -n jx ingress jenkins-x-jxui
+[Captains-Bay]🚩 >  kubectl get -n jx ingress jenkins-x-jxui
+Error from server (NotFound): ingresses.extensions "jenkins-x-jxui" not found
+[Captains-Bay]🚩 >  jx ui -p 8080
+UI not configured to run with TLS - The UI will open in read-only mode with port-forwarding only for the current user
+Waiting for the UI to be ready on http://localhost:8080...
+.
+.
+Jenkins X UI: http://localhost:8080
+Opening the UI in the browser...
+```
+
+
+
