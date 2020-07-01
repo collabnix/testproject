@@ -357,4 +357,12 @@ Using namespace 'jx' from context named 'gke_famous-hull-276807_us-east1-b_mytes
 
 ```
 
+```
+jx get environments
+NAME       LABEL       KIND        PROMOTE NAMESPACE     ORDER CLUSTER SOURCE                                                                            REF    PR
+dev        Development Development Never   jx            0             https://github.com/jenkins-x-testproject/environment-mytestproject-dev.git        master
+staging    Staging     Permanent   Auto    jx-staging    100           https://github.com/jenkins-x-testproject/environment-mytestproject-staging.git    master
+production Production  Permanent   Manual  jx-production 200           https://github.com/jenkins-x-testproject/environment-mytestproject-production.git master
+[Captains-Bay]🚩 >
+```
 
